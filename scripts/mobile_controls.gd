@@ -72,10 +72,13 @@ func _build_interface() -> void:
 	joystick.anchor_top = 1.0
 	joystick.anchor_right = 0.0
 	joystick.anchor_bottom = 1.0
-	joystick.offset_left = 56.0
-	joystick.offset_top = -256.0
-	joystick.offset_right = 256.0
-	joystick.offset_bottom = -56.0
+
+	# Mobile V2: move joystick clearly inward and upward.
+	joystick.offset_left = 120.0
+	joystick.offset_top = -320.0
+	joystick.offset_right = 320.0
+	joystick.offset_bottom = -120.0
+
 	joystick.connect("direction_changed", Callable(self, "_on_joystick_changed"))
 	_root.add_child(joystick)
 
