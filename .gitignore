@@ -5,6 +5,7 @@
 # Exported builds
 builds/
 *.apk
+*.apk.idsig
 *.aab
 *.ipa
 
