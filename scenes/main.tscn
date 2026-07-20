@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/mobile_controls.gd" id="2_mobile"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Dim" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.015, 0.02, 0.03, 0.44)
+mouse_filter = 2
+
+[node name="Menu" type="PanelContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -250.0
+offset_right = 244.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="UI/Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="UI/Menu/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="UI/Menu/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "THE GOLDEN REALM"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/Menu/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Ancient Burmese Mobile Adventure"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="UI/Menu/Margin/VBox"]
+layout_mode = 2
+
+[node name="Offline" type="Button" parent="UI/Menu/Margin/VBox"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "PLAY OFFLINE"
+
+[node name="Host" type="Button" parent="UI/Menu/Margin/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "HOST GAME"
+
+[node name="Address" type="LineEdit" parent="UI/Menu/Margin/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+placeholder_text = "Server IP address"
+text = "127.0.0.1"
+
+[node name="Join" type="Button" parent="UI/Menu/Margin/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "JOIN GAME"
+
+[node name="Status" type="Label" parent="UI/Menu/Margin/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Ready for mobile testing"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileHint" type="Label" parent="UI"]
+anchors_preset = 12
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -48.0
+offset_right = -24.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Mobile: left joystick • swipe right side • JUMP • USE"
+horizontal_alignment = 1
+
+[node name="MobileControls" type="CanvasLayer" parent="."]
+script = ExtResource("2_mobile")

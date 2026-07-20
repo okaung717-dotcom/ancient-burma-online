@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape_player"]
+radius = 0.38
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.34, 0.055, 0.045, 1)
+roughness = 0.72
+
+[sub_resource type="CapsuleMesh" id="Mesh_body"]
+material = SubResource("Mat_body")
+radius = 0.38
+height = 1.8
+radial_segments = 20
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="Mat_skin"]
+albedo_color = Color(0.55, 0.31, 0.19, 1)
+roughness = 0.9
+
+[sub_resource type="SphereMesh" id="Mesh_head"]
+material = SubResource("Mat_skin")
+radius = 0.31
+height = 0.62
+radial_segments = 20
+rings = 12
+
+[sub_resource type="StandardMaterial3D" id="Mat_gold"]
+albedo_color = Color(0.83, 0.53, 0.09, 1)
+metallic = 0.45
+roughness = 0.38
+
+[sub_resource type="BoxMesh" id="Mesh_sash"]
+material = SubResource("Mat_gold")
+size = Vector3(0.82, 0.16, 0.16)
+
+[sub_resource type="CylinderMesh" id="Mesh_headdress"]
+material = SubResource("Mat_gold")
+top_radius = 0.08
+bottom_radius = 0.29
+height = 0.58
+radial_segments = 20
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("CapsuleShape_player")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.9, 0)
+mesh = SubResource("Mesh_body")
+
+[node name="Sash" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.02, -0.34)
+rotation = Vector3(0, 0, -0.42)
+mesh = SubResource("Mesh_sash")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.91, 0)
+mesh = SubResource("Mesh_head")
+
+[node name="Headdress" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.43, 0)
+mesh = SubResource("Mesh_headdress")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+position = Vector3(0, 1.6, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 4.6
+margin = 0.15
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+current = false
+fov = 68.0
+
+[node name="InteractionRay" type="RayCast3D" parent="CameraPivot/SpringArm3D/Camera3D"]
+target_position = Vector3(0, 0, -9.0)
+collision_mask = 1
+collide_with_areas = true
+enabled = true
+
+[node name="NameLabel" type="Label3D" parent="."]
+position = Vector3(0, 2.95, 0)
+pixel_size = 0.006
+text = "Player"
+outline_size = 6
