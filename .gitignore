@@ -1,0 +1,16 @@
+# Godot 4+
+.godot/
+.android/
+
+# Exported builds
+builds/
+*.apk
+*.aab
+*.ipa
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
